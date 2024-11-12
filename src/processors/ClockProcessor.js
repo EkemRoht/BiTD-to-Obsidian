@@ -1,4 +1,4 @@
-import {renderCirclesForClock, renderProgressBar} from "../utils";
+import {renderProgressBar} from "../utils";
 
 export function registerClockProcessor(plugin) {
 	plugin.registerMarkdownCodeBlockProcessor("clock", processClockBlock);

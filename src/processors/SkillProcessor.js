@@ -1,4 +1,4 @@
-import { renderSkill, createDivWithContent } from '../utils';
+import {renderSkill, createDivWithContent, createCopyButton} from '../utils';
 
 export function registerSkillProcessor(plugin) {
 	plugin.registerMarkdownCodeBlockProcessor("skill", processSkillBlock);
@@ -14,6 +14,16 @@ function processSkillBlock(source, el, context) {
 			const [, skillName, filled, total] = match;
 			const renderedSkill = renderSkill(skillName, parseInt(filled), parseInt(total));
 			const skillElement = createDivWithContent(renderedSkill);
+
+			// Добавляем обработчик клика для копирования команды
+			skillElement.onclick = () => {
+				const diceCommand = `${filled}d6 k1 !${skillName}`;
+				navigator.clipboard.writeText(`/roll message:${diceCommand}`).then(() => {
+					skillElement.classList.add('copied');
+					setTimeout(() => skillElement.classList.remove('copied'), 1000);
+				});
+			};
+
 			el.appendChild(skillElement);
 		}
 	});

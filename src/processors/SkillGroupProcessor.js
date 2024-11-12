@@ -1,4 +1,4 @@
-import { renderSkill, renderCircles, createDivWithContent } from '../utils';
+import {renderSkill, renderCircles, createDivWithContent, createCopyButton} from '../utils';
 
 export function registerSkillGroupProcessor(plugin) {
 	plugin.registerMarkdownCodeBlockProcessor("skillgroup", processSkillGroupBlock);
@@ -29,6 +29,16 @@ function processSkillGroupBlock(source, el, context) {
 			const totalCount = parseInt(total, 10);
 			const renderedSkill = renderSkill(skillName, filledCount, totalCount);
 			const skillElement = createDivWithContent(renderedSkill);
+
+			// Обработчик клика для копирования команды
+			skillElement.onclick = () => {
+				const diceCommand = `${filledCount}d6 k1`;
+				navigator.clipboard.writeText(`/roll message:${diceCommand}`).then(() => {
+					skillElement.classList.add('copied');
+					setTimeout(() => skillElement.classList.remove('copied'), 1000);
+				});
+			};
+
 			skillContainer.appendChild(skillElement);
 
 			if (filledCount >= 1) {
@@ -40,7 +50,15 @@ function processSkillGroupBlock(source, el, context) {
 
 	if (groupName) {
 		const groupCircles = renderCircles(count, totalSkills);
-		const groupElement = createDivWithContent(`<h3>${groupName} ${groupCircles}</h3>`);
+		const groupElement = createDivWithContent(`<h3 class="skill-text">${groupName} ${groupCircles}</h3>`);
+		// Обработчик клика для копирования команды
+		groupElement.onclick = () => {
+			const diceCommand = `${count}d6 k1`;
+			navigator.clipboard.writeText(`/roll message:${diceCommand}`).then(() => {
+				groupElement.classList.add('copied');
+				setTimeout(() => groupElement.classList.remove('copied'), 1000);
+			});
+		};
 		el.appendChild(groupElement);
 	}
 

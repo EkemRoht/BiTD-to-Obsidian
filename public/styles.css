@@ -28,4 +28,12 @@
     background-color: transparent;  /* Прозрачный фон */
 }
 
-/* Добавь сюда дополнительные стили, если нужно */
+.copied {
+    color: var(--link-external-color);  /* Цвет для индикации успешного копирования */
+}
+
+.progress-segment,
+.skill-text {
+    cursor: pointer; /* Меняем курсор на указатель */
+    transition: color 0.2s, text-decoration 0.2s; /* Анимация для плавности */
+}

@@ -1,6 +1,6 @@
 export function renderSkill(skillName, filled, total) {
 	const circles = renderCircles(filled, total);
-	return `${circles}  ${skillName}`;
+	return `<span class="skill-text">${circles} ${skillName}</span>`;
 }
 
 export function renderCircles(filled, total) {
@@ -43,3 +43,20 @@ export function createDivWithContent(content) {
 	div.innerHTML = content;
 	return div;
 }
+
+export function createCopyButton(diceCommand) {
+	const button = document.createElement('button');
+	button.className = 'copy-button';
+	button.textContent = '🎲';
+	button.style.marginLeft = '8px';
+
+	button.onclick = () => {
+		navigator.clipboard.writeText(`/roll message:${diceCommand}`).then(() => {
+			button.textContent = '✔️';
+			setTimeout(() => (button.textContent = '🎲'), 1000);
+		});
+	};
+
+	return button;
+}
+
