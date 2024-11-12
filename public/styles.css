@@ -1,0 +1,31 @@
+/* styles.css */
+.mono-font {
+    font-family: monospace;
+}
+
+.progress-bar {
+    display: flex;
+    flex-direction: row; /* Горизонтальное выравнивание */
+    gap: 4px;  /* Промежуток между делениями */
+    margin-top: -8px;
+    padding: 0;
+    height: 4px;  /* Толщина линии */
+    width: 100%;  /* Ширина всей полоски */
+}
+
+.progress-segment {
+    flex-grow: 1;  /* Равномерное распределение по горизонтали */
+    border: 1px dotted currentColor;
+    height: 4px;  /* Высота равна высоте полоски */
+    box-sizing: border-box;  /* Учитываем границы внутри размера */
+}
+
+.progress-segment.filled {
+    background-color: currentColor;  /* Цвет заливки */
+}
+
+.progress-segment.empty {
+    background-color: transparent;  /* Прозрачный фон */
+}
+
+/* Добавь сюда дополнительные стили, если нужно */
