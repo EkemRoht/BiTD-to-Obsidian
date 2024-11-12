@@ -17,8 +17,8 @@ function processSkillBlock(source, el, context) {
 
 			// Добавляем обработчик клика для копирования команды
 			skillElement.onclick = () => {
-				const diceCommand = `${filled}d6 k1 !${skillName}`;
-				navigator.clipboard.writeText(`/roll message:${diceCommand}`).then(() => {
+				const diceCommand = filled > 0 ? `${filled}d6 k1` : `2d6 kl1`;
+				navigator.clipboard.writeText(`/roll message:${diceCommand} !${skillName}`).then(() => {
 					skillElement.classList.add('copied');
 					setTimeout(() => skillElement.classList.remove('copied'), 1000);
 				});
