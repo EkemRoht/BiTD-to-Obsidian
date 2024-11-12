@@ -32,7 +32,7 @@ function processSkillGroupBlock(source, el, context) {
 
 			// Обработчик клика для копирования команды
 			skillElement.onclick = () => {
-				const diceCommand = `${filledCount}d6 k1`;
+				const diceCommand = `${filledCount}d6 k1 !${skillName}`;
 				navigator.clipboard.writeText(`/roll message:${diceCommand}`).then(() => {
 					skillElement.classList.add('copied');
 					setTimeout(() => skillElement.classList.remove('copied'), 1000);
@@ -53,7 +53,7 @@ function processSkillGroupBlock(source, el, context) {
 		const groupElement = createDivWithContent(`<h3 class="skill-text">${groupName} ${groupCircles}</h3>`);
 		// Обработчик клика для копирования команды
 		groupElement.onclick = () => {
-			const diceCommand = `${count}d6 k1`;
+			const diceCommand = `${count}d6 k1 !${groupName}`;
 			navigator.clipboard.writeText(`/roll message:${diceCommand}`).then(() => {
 				groupElement.classList.add('copied');
 				setTimeout(() => groupElement.classList.remove('copied'), 1000);
