@@ -1,10 +1,10 @@
-import {renderSkill, renderCircles, createDivWithContent, createCopyButton, renderProgressBar} from '../utils';
+import {renderSkill, renderCircles, createDivWithContent, renderProgressBar} from '../utils';
 
 export function registerSkillGroupProcessor(plugin) {
 	plugin.registerMarkdownCodeBlockProcessor("skillgroup", processSkillGroupBlock);
 }
 
-function processSkillGroupBlock(source, el, context) {
+function processSkillGroupBlock(source, el) {
 	console.log('Обрабатываем блок skillgroup:', source);
 	const lines = source.split('\n');
 	let count = 0;
@@ -57,7 +57,7 @@ function processSkillGroupBlock(source, el, context) {
 		const groupElement = document.createElement('div');
 		groupElement.classList.add('skillgroup');
 		const groupTitle = document.createElement('h3');
-		groupTitle.innerText = `${groupName} ${groupCircles}`;
+		groupTitle.innerHTML = `${groupName} ${groupCircles}`;
 
 		// Обработчик клика для копирования команды группы
 		groupTitle.onclick = () => {

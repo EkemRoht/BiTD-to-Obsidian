@@ -4,7 +4,7 @@ import path from 'path';
 export default defineConfig({
 	build: {
 		outDir: 'dist',
-		minify: true,
+		// minify: true,
 		lib: {
 			entry: path.resolve(__dirname, 'main.js'), // Указываем на основной файл
 			name: 'bitd-to-obsidian',
