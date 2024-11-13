@@ -3,10 +3,11 @@ import path from 'path';
 
 export default defineConfig({
 	build: {
-		outDir: '../test-builded',
+		outDir: 'dist',
+		minify: true,
 		lib: {
 			entry: path.resolve(__dirname, 'main.js'), // Указываем на основной файл
-			name: 'MyPlugin',
+			name: 'bitd-to-obsidian',
 			fileName: () => 'main.js',
 			formats: ['cjs'], // CommonJS формат
 		},
